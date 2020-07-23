@@ -8,12 +8,12 @@ If not already done, then these steps are mandatory to work with GTK programming
 - make sure, you're well known in C/C++ programming and you can handle with the GTK wiki ;-)
 - these programming examples are running under a Linux system; it's not tested, if these will run on an another system, too
 
-~~ programs ~~
+# programs #
 · Glade 3.22.1 (can be installed from the software center)
 · any editor
 · the current GCC/G++ compiler
 
-~~ libraries ~~
+# libraries #
 libgtk-3-dev --> sudo apt-get install libgtk-3-dev
 
 Finally, if you've questions, wishes or else, then contact me.
