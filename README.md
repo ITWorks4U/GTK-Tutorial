@@ -1,21 +1,30 @@
-# GTK
+# GTK (GUI programming)
 
-Here you can find some programming samples of the GTK+ programming in C only. These programming requires well known knowledge of the C/C++ programming, too.
-You can find the tutorials on my channel, too, which are in German, however, the programming itself contains the English written implementation.
+-	GTK stands for: **G**IMP **T**ool**K**it
+-	all these samples were written in English language
 
-### How to use GTK?
-If not already done, then these steps are mandatory to work with GTK programming in C:
-- make sure, you're well known in C/C++ programming and you can handle with the GTK wiki ;-)
-- these programming examples are running under a Linux system; it's not tested, if these will run on an another system, too
+##	GTK is available for:
 
-### programs
-- Glade 3.22.1 (can be installed from the software center)
-- any editor
-- the current gcc/g++ compiler
+-	C
+-	C++
+-	Python
+-	JavaScript
+-	Rust
+-	https://www.gtk.org/docs/language-bindings/index
 
-### libraries
-libgtk-3-dev --> sudo apt-get install libgtk-3-dev
+##	general requirement
+-	Glade (at least version 3 => Glade 3.40.0 is in use here)
+-	Linux (Linux Mint 21.1 Cinnamon is in use here) => in other OS this application is also (hopefully) available
+-	handle with the GTK wiki :o)
+-	any editor of your choice (here: visual studio code 1.90.0)
 
-Finally, if you've questions, wishes or else, then contact me.
+###	for C
 
-Have fun!
+-	(advanced) knowledge about C programming (C++ might also be nice, but in that case C is your language to use)
+-	libgtk-3-dev => for Linux: ```sudo apt install libgtk-3-dev```
+-	libgtk-4-dev => for Linux: ```sudo apt install libgtk-4-dev```
+-	a current C compiler
+
+###	for Python
+
+-	(advanced) knowledge about Python 3 programming (in that case with Python 3.10+)
