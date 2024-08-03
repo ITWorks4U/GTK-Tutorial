@@ -1,3 +1,12 @@
+/*
+	Checkbox buttons allows a multiple choice of options, actions, ...
+	To handle a checkbox button, a counter is in use here.
+	When the value of this counter is odd, then this check box has been
+	checked. Otherwise it's unchecked.
+	
+	(C) 2024 ITWorks4U
+*/
+
 #include "../header/gtk_full_tutorial.h"
 
 void window_destroy(void) {
