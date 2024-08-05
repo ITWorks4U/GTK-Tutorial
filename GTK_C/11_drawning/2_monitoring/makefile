@@ -7,6 +7,7 @@ HEADERS=header/gtk_full_tutorial.h
 
 #	application target
 TARGET=window.run
+TARGET_WIN=window.exe
 
 #	building sequence
 all:
@@ -16,3 +17,12 @@ all:
 clean:
 				@rm $(TARGET)
 				$(info App "$(TARGET)" removed.)
+
+#	NOT TESTED UNDER WINDOWS!
+app_win:
+				@gcc -g3 -Wall $(SOURCES) $(HEADERS) -o $(TARGET_WIN) $(FLAGS)
+				$(info App "$(TARGET_WIN)" built.)
+
+clean_win:
+				@del $(TARGET_WIN)
+				$(info App "$(TARGET_WIN)" removed.)
