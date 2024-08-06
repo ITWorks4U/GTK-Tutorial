@@ -12,7 +12,6 @@
 
 /*	libaries	*/
 #include <gtk/gtk.h>
-#include <stdbool.h>
 
 /*	constants	*/
 #define	GLADE_SOURCE_PATH	"glade/gtk_window.glade"
