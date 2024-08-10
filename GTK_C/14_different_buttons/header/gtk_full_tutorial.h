@@ -1,3 +1,9 @@
+/*
+	The different buttons and their purpose...
+
+	(C) 2024 ITWorks4U
+*/
+
 #ifndef GTK_FULL_TUTOIRAL
 #define	GTK_FULL_TUTORIAL
 
