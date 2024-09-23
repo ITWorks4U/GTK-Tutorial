@@ -1,2 +1,4 @@
 .vscode/settings.json
 .vscode/c_cpp_properties.json
+GTK_C/.vscode/settings.json
+GTK_C/.vscode/c_cpp_properties.json
