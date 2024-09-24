@@ -40,11 +40,8 @@ int main(int argc, char **argv) {
 	widgets->password_strength = GTK_LEVEL_BAR(gtk_builder_get_object(builder, "level_password_strength"));
 	widgets->timer_progress = GTK_PROGRESS_BAR(gtk_builder_get_object(builder, "visual_timer_prgress"));
 	
-	/*	refreshing every 500ms	*/
-	g_timeout_add(500, (GSourceFunc)refresh_password, widgets);
-
-	/*	100ms for progress bar	*/
-	g_timeout_add(100, (GSourceFunc)refresh_bar_duration, widgets->timer_progress);
+	/*	generating a new password every 500ms => see into the function for more details	*/
+	g_timeout_add(100, (GSourceFunc)refresh_password, widgets);
 
 	gtk_builder_connect_signals(builder, widgets);
 	g_object_unref(builder);

@@ -54,7 +54,6 @@ typedef struct GtkObjects {
 
 /*	function prototypes	*/
 gboolean refresh_password(const AppWidgets *app);
-gboolean refresh_bar_duration(GtkProgressBar *pb);
 void toggle_object_availability(const AppWidgets *app, bool isActive);
 
 #endif

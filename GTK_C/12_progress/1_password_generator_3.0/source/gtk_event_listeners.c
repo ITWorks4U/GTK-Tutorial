@@ -20,63 +20,65 @@
 #include <time.h>
 #include "../header/gtk_full_tutorial.h"
 
-static gdouble progress_bar_value = 0.0;
+static gfloat progress_bar_value = 0.0F;
 
 gboolean refresh_password(const AppWidgets *app) {
 	if (toggle_button_state) {
-		gint spinNumber = gtk_spin_button_get_value_as_int(app->spin_button);
-		gchar random_word[spinNumber + 1];
-		memset(random_word, '\0', spinNumber + 1);
+		static int ctr = 0;
 
-		gint counter = 0;
-		srand(time(NULL));
-		guint random_number = 0;
+		/*	generating each 500 ms a new password	*/
+		if (ctr == 0) {
+			gint spinNumber = gtk_spin_button_get_value_as_int(app->spin_button);
+			gchar random_word[spinNumber + 1];
+			memset(random_word, '\0', spinNumber + 1);
 
-		while(counter != spinNumber) {
-			bool next_step = false;
-			random_number = rand() % strlen(WORD_POOL);
+			gint counter = 0;
+			srand(time(NULL));
+			guint random_number = 0;
 
-			if (random_number >= 0 && random_number <= 25 && with_capital_letters) {
-				random_word[counter] = WORD_POOL[random_number];
-				next_step = true;
-			} else if (random_number >= 26 && random_number <= 51 && with_lower_letters) {
-				random_word[counter] = WORD_POOL[random_number];
-				next_step = true;
-			} else if (random_number >= 52 && random_number <= 61 && with_numbers) {
-				random_word[counter] = WORD_POOL[random_number];
-				next_step = true;
-			} else if (random_number >= 62 && with_bonus_characters) {
-				random_word[counter] = WORD_POOL[random_number];
-				next_step = true;
+			while(counter != spinNumber) {
+				bool next_step = false;
+				random_number = rand() % strlen(WORD_POOL);
+
+				if (random_number >= 0 && random_number <= 25 && with_capital_letters) {
+					random_word[counter] = WORD_POOL[random_number];
+					next_step = true;
+				} else if (random_number >= 26 && random_number <= 51 && with_lower_letters) {
+					random_word[counter] = WORD_POOL[random_number];
+					next_step = true;
+				} else if (random_number >= 52 && random_number <= 61 && with_numbers) {
+					random_word[counter] = WORD_POOL[random_number];
+					next_step = true;
+				} else if (random_number >= 62 && with_bonus_characters) {
+					random_word[counter] = WORD_POOL[random_number];
+					next_step = true;
+				}
+
+				if (next_step) {
+					counter++;
+				}
 			}
 
-			if (next_step) {
-				counter++;
-			}
+			gtk_entry_set_text(app->password_output, random_word);
 		}
 
-		gtk_entry_set_text(app->password_output, random_word);
+		/*	updating progress bar each 100ms	*/
+		if (progress_bar_value < 0.1F) {
+			progress_bar_value = 1.0F;
+			gtk_progress_bar_set_fraction(app->timer_progress, progress_bar_value);
+		} else {
+			progress_bar_value -= 0.10F;
+			gtk_progress_bar_set_fraction(app->timer_progress, progress_bar_value);
+		}
+
+		ctr++;
+		if (ctr == 5) {
+			ctr = 0;
+		}
 	} else {
-		progress_bar_value = 0.0;
+		progress_bar_value = 0.0F;
 		gtk_progress_bar_set_fraction(app->timer_progress, progress_bar_value);
 		gtk_entry_set_text(app->password_output, "");
-	}
-
-	return TRUE;
-}
-
-gboolean refresh_bar_duration(GtkProgressBar *pb) {
-	if (toggle_button_state) {
-		if (progress_bar_value < 0.1) {
-			progress_bar_value = 1.0;
-			gtk_progress_bar_set_fraction(pb, progress_bar_value);
-		} else {
-			progress_bar_value -= 0.10;
-			gtk_progress_bar_set_fraction(pb, progress_bar_value);
-		}
-	} else {
-		progress_bar_value = 0.0;
-		gtk_progress_bar_set_fraction(pb, progress_bar_value);
 	}
 
 	return TRUE;
@@ -92,20 +94,17 @@ void spin_value_changed(GtkSpinButton *spinBtn, AppWidgets *app) {
 
 	if (spinNumber < 8) {
 		password_strength = 0.0;
-		gtk_level_bar_set_value(app->password_strength, password_strength);
 	} else if (spinNumber >= 8 && spinNumber <= 14) {
 		password_strength = 0.2;
-		gtk_level_bar_set_value(app->password_strength, password_strength);
 	} else if (spinNumber >= 15 && spinNumber <= 23) {
 		password_strength = 0.4;
-		gtk_level_bar_set_value(app->password_strength, password_strength);
 	} else if (spinNumber >= 24 && spinNumber <= 31) {
 		password_strength = 0.8;
-		gtk_level_bar_set_value(app->password_strength, password_strength);
 	} else {
 		password_strength = 1.0;
-		gtk_level_bar_set_value(app->password_strength, password_strength);
 	}
+
+	gtk_level_bar_set_value(app->password_strength, password_strength);
 }
 
 void toggle_object_availability(const AppWidgets *app, bool isActive) {
